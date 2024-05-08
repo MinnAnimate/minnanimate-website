@@ -1,4 +1,4 @@
-![Image](image.jpg)
+[![MinnAnimate Logo](TextLogo.png)](https://filmfreeway.com/MinnAnimate)
 
 # About
 ### MinnAnimate is an artist-led initiative celebrating animation in Minnesota.
