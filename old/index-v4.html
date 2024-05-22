@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MinnAnimate</title>
+    <link rel="icon" href="../EyesLogo.ico" type="image/x-icon">
+
+    <!-- Linking to Lottie via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.11/lottie.min.js"></script>
+    
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/byt6bku.css">
+
+	
+<!-- CSS START --><!-- CSS START --><!-- CSS START --><!-- CSS START -->
+    <style>
+        /* Body */
+		body {
+            margin: 0;
+            padding: 0;
+            font-family: "Arpona";
+            background-color: #F7EDE2;
+            font-size: 16px;
+            color: #402D34;
+        }
+		/* Main Container */
+        .container {
+            max-width: 1200px; /* Set your maximum width */
+            margin: 0 auto; /* Center the container */
+            padding: 20px; /* Add padding around the container */
+            display: grid;
+            grid-template-columns: 1fr; /* Single column for header */
+            gap: 20px; /* Gap between columns */
+            max-width: 80%;
+        }
+		/* Grid */
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Two columns for main content, each taking up equal space */
+            gap: 20px; /* Gap between columns */
+        }
+        /* Section Styles */
+        .header {
+            color: #ffffff;
+            display: flex; /* Use flexbox */
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+            margin-top: 15%;
+        }
+		/* Main Content divs */
+        .main-content div {
+            padding: 10px;
+        }
+		/* Footer */
+        .footer {
+            color: #FBAA9D;
+            padding: 20px;
+            text-align: center;
+        }
+		/* Hyperlinks */
+        a {
+            color: #DD8172; /* Change color of hyperlinks */
+            text-align: center;
+        }
+		/* Header 4 */
+        h4 {
+            text-align: center;
+            font-size: 25px;
+            color: #DD8172;
+        }
+		/* Header 5 */
+        h5 {
+            text-align: center;
+            font: "Alegreya Sans SC";
+            font-size: 40px;
+            color: #D9E250;
+            text-transform: uppercase;
+        }
+		/* Save the Date JSON */
+        .save-the-date {
+            padding: 20px;
+        }
+		/* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            /* Add some spacing between icons */
+            transition: transform 0.3s ease; /* Add transition */
+        }
+
+        /* Wiggle social icons on hover */
+        .social-icons a:hover {
+            animation: wiggle .7s ease infinite; /* Add wiggle animation */
+        }
+
+        /* Keyframes for the wiggle animation */
+        @keyframes wiggle {
+            0% {
+                transform: rotate(-4deg);
+            }
+            50% {
+                transform: rotate(4deg);
+            }
+            100% {
+                transform: rotate(-4deg);
+            }
+        }
+		/* Width Adjustment for Mobile Devices */
+        @media (max-width: 1030px) {
+            .main-content {
+                grid-template-columns: 1fr; /* Single column layout */
+            }
+
+            .main-content > div:nth-child(2) {
+                order: -1; /* Move the second column to the first position */
+            }
+        }
+
+        /* Flashing Hyperlinks */
+        @keyframes flash {
+            0% { color: #DD8172; }
+            50% { color: #D9E250; } /* Flash color */
+            100% { color: #DD8172; }
+        }
+
+        /* Hyperlink Animation on Hover */
+        a:hover {
+            animation: flash 0.5s infinite; /* Apply the animation */
+        }	
+		
+		/* Flashing effect for buttons on hover */
+        .button:hover {
+        animation: flash 0.5s infinite; /* Apply the animation */
+}
+
+    /* CSS for button text */
+
+        .button {
+            font-family: Arpona;
+			display: inline-block;
+            padding: 10px 50px;
+            margin: 10px;
+            background-color: #D9E250;
+            color: #402D34;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #DD8172;
+        }
+
+
+    /* CSS for alert message */
+        .alert {
+            display: inline-block;
+            background-color: #DD8172;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-left: 10px;
+    }
+		/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 50%; /* Full width */
+    height: 50%; /* Full height */
+    overflow: none; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0); /* none */
+    padding-top: 60px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	
+	
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #D9E250;
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 20px;
+    width: 70%; /* Could be more or less, depending on screen size */
+	max-width: 600px;
+	text-align: center;
+	border-radius: 20px;
+	box-shadow: 0px 0px 50px;
+}
+
+/* The Close Button */
+.close {
+    color: #402D34;
+    float: right;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #DD8172;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    </style>
+<!-- CSS END --><!-- CSS END --><!-- CSS END --><!-- CSS END -->
+</head>
+
+<!-- HTML START --><!-- HTML START --><!-- HTML START --><!-- HTML START -->
+<body>
+
+<!-- Main Website Container -->
+<div class="container">
+    <!-- Main Content -->
+    <div class="main-content">
+        <div>
+            <!-- Column 1 -->
+            <div class="save-the-date">
+                <div id="SaveTheDateJSON-Container"></div>
+                <script>
+                    // Load the animation
+                    var animation = bodymovin.loadAnimation({
+                        container: document.getElementById('SaveTheDateJSON-Container'),
+                        renderer: 'svg', // or 'canvas', 'html'
+                        loop: true, // Set to true for looped animations
+                        autoplay: true, // Set to true to start the animation immediately
+                        path: 'SaveTheDate.json' // Path to your animation JSON file
+                    });
+                </script>
+            </div>
+            <h1>History</h1>
+            <p>Founded in 2012 by then Minneapolis-based animator <a href="https://www.johnakre.com/" target="_blank">John Akre</a>, MinnAnimate has manifested primarily as a single-screening animation festival. From 2020-2021, the festival went on hiatus, returning in 2022 under the leadership of <a href="https://www.instagram.com/cstanhill/" target="_blank">CC Stanhill</a>. In 2024, the torch was passed to <a href="https://meritthursday.com/" target="_blank">Merit Thursday</a> and <a href="https://adamloomis.com/" target="_blank">Adam Loomis</a> who co-organize it today.</p>
+			
+
+<!-- ARCHIVE LINK TO BE IMPLEMENTED
+	<p><h2><a href="https://www.minnanimate.wordpress.com/" target="_blank">Archive</a></h2></p> -->
+
+<!-- EMAIL BUTTON -->
+<div id="copyEmail" style="display:none;">minnanimate@gmail.com</div>
+
+<!-- Button to trigger copy function -->
+<button class="button" onclick="copyToClipboard('copyEmail')">EMAIL</button>
+
+<!-- Hyperlink styled as a button -->
+<a href="https://www.givemn.org/story/minnanimate" class="button">DONATE</a>
+
+<script>
+    function copyToClipboard(elementId) {
+        // Select the email address element
+        var emailElement = document.getElementById(elementId);
+        
+        // Create a temporary textarea to hold the email address
+        var tempTextArea = document.createElement("textarea");
+        tempTextArea.value = emailElement.textContent; // Set the email address as the textarea value
+        
+        // Append the textarea to the body
+        document.body.appendChild(tempTextArea);
+        
+        // Select the textarea's text
+        tempTextArea.select();
+        
+        // Copy the selected text to clipboard
+        document.execCommand("copy");
+        
+        // Remove the temporary textarea
+        document.body.removeChild(tempTextArea);
+        
+        // Provide some visual feedback
+        var alertMsg = "Copied!";
+        showAlert(alertMsg, 2000, event.target); // Show alert for 2 seconds (2000 milliseconds)
+    }
+    
+function showAlert(message, duration) {
+    var button = document.querySelector("button");
+    var alertDiv = document.createElement("div");
+    alertDiv.textContent = message;
+    alertDiv.classList.add("alert");
+
+    // Calculate the button's position
+    var rect = button.getBoundingClientRect();
+    var buttonTop = rect.top + window.pageYOffset;
+    var buttonLeft = rect.left + window.pageXOffset;
+    
+    // Set the alert's position to the left of the button
+    alertDiv.style.position = "absolute"; // Ensure the alertDiv is positioned absolutely
+    alertDiv.style.top = buttonTop + "px";
+    alertDiv.style.left = (buttonLeft - alertDiv.offsetWidth - 10) + "px"; // Adjust the position to the left of the button
+    
+    document.body.appendChild(alertDiv);
+    
+    // Hide the alert after the specified duration
+    setTimeout(function() {
+        alertDiv.style.display = "none";
+    }, duration);
+}
+
+</script>		
+<!-- EMAIL BUTTON END--><!-- EMAIL BUTTON END--><!-- EMAIL BUTTON END-->
+			
+        </div>
+        <div>
+            <!-- Header -->
+            <!-- LOGO -->
+            <header class="header">                
+				<div id="CaveDwellerBlinkJSON-Container"></div>
+                <script>
+                    // Load the animation
+                    var animation = bodymovin.loadAnimation({
+                        container: document.getElementById('CaveDwellerBlinkJSON-Container'),
+                        renderer: 'svg', // or 'canvas', 'html'
+                        loop: true, // Set to true for looped animations
+                        autoplay: true, // Set to true to start the animation immediately
+                        path: 'CaveDweller_Blink.json' // Path to your animation JSON file
+                    });
+                </script>
+            </header>
+            <h4>An artist-led festival celebrating animation in Minnesota.</h4>
+            <!-- Social Icons -->
+            <div class="social-icons">
+                <a href="https://filmfreeway.com/MinnAnimate" target="_blank">
+                    <img src="../filmfreeway-logo-hires-black.png" alt="Film Freeway Logo" style="max-height: 75px">
+                </a>
+                <a href="https://www.instagram.com/minnanimate/" target="_blank">
+                    <img src="../Icon-Instagram-PNG.png" alt="Instagram Logo" style="max-width: 60px">
+                </a>
+            </div>
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; 2024 MinnAnimate</p>
+                <!-- Add any footer content here -->
+            </footer>
+        </div>
+        <div>
+            <!-- Column 2 -->
+            <h1>Festival Submission Guide</h1>
+            <h2>Eligibility</h2>
+            <ul>
+                <li>Only films completed after August 1st, 2023 are eligible to participate.</li>
+                <li>Only films using animation will be considered.</li>
+                <li>The festival prioritizes programming films by independent animators, students, and youth.</li>
+                <li>All genres will be considered. Music videos are eligible.</li>
+                <li>The director (or filmmaker) must own the rights to all original images, music, sound effects, and soundtracks of their festival entry.</li>
+            </ul>
+            <h2>Submitting</h2>
+            <ul>
+                <li>Submissions open May 17th and will only be accepted via <a href="https://filmfreeway.com/MinnAnimate" target="_blank">Film Freeway</a>.</li>
+                <li>Submission deadline is July 19th.</li>
+                <li>There is no entry fee. Submission to the festival is free.</li>
+            </ul>
+            <h2>Usage</h2>
+            <ul>
+                <li>Filmmakers whose work is accepted authorize the festival to use their publicity material and/or a short excerpt of the film for promotional purposes.</li>
+                <li>Film stills will be used on the festival website and in printed programs.</li>
+                <li>Upon selection, participants may be required to submit high resolution movie files.</li>
+            </ul>
+        </div>
+    </div>
+<script>
+window.onload = function() {
+    // Get the modal
+    var modal = document.getElementById("myModal");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    modal.style.display = "block";
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+</script>
+	<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+		<p><iframe title="vimeo-player" src="https://player.vimeo.com/video/948109830?h=db52ae9361" width="100%" height="360" frameborder="0"    allowfullscreen></iframe></p>
+    </div>
+</div>
+</div> <!-- Close .container -->
+</body>
+</html>
+<!-- HTML END --><!-- HTML END --><!-- HTML END --><!-- HTML END -->
