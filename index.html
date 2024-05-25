@@ -89,21 +89,36 @@
         .save-the-date {
             padding: 20px;
         }
-
-        /* Social Icons */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        
+        /* Flashing Hyperlinks */
+        @keyframes flash {
+            0% { color: #DD8172; }
+            50% { color: #D9E250; }
+            100% { color: #DD8172; }
         }
 
-        .social-icons a {
+        /* Hyperlink Animation on Hover */
+        a:hover {
+            animation: flash 0.5s infinite;
+        }
+		
+        .important-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;	
+        }
+		
+		.important-buttons img {
+			max-height: 40px;
+		}
+
+        .important-buttons a {
             margin: 0 10px;
             transition: transform 0.3s ease;
         }
 
         /* Wiggle social icons on hover */
-        .social-icons a:hover {
+        .important-buttons a:hover {
             animation: wiggle .7s ease infinite;
         }
 
@@ -119,21 +134,7 @@
                 transform: rotate(-4deg);
             }
         }
-
-        
-        /* Flashing Hyperlinks */
-        @keyframes flash {
-            0% { color: #DD8172; }
-            50% { color: #D9E250; }
-            100% { color: #DD8172; }
-        }
-
-        /* Hyperlink Animation on Hover */
-        a:hover {
-            animation: flash 0.5s infinite;
-        }
-
-        /* Flashing effect for buttons on hover */
+		/* Flashing effect for buttons on hover */
         .button:hover {
             animation: flash 0.5s infinite;
         }
@@ -141,17 +142,16 @@
         /* CSS for button text */
         .button {
             font-family: Arpona;
-            display: inline-block;
-            padding: 10px 50px;
-            margin: 10px;
             background-color: #D9E250;
+			margin: 10px;
+			padding: 5px 10px;
             color: #402D34;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
         }
 
         .button:hover {
@@ -159,7 +159,7 @@
         }
 		
 		
-        /* CSS for button text */
+        /* CSS for Modal Button text */
         .button2 {
             font-family: Arpona;
             display: inline-block;
@@ -188,7 +188,34 @@
             border-radius: 5px;
             margin-left: 10px;
         }
+		/* Tome Asset*/
+		.tome {
+		margin: auto;
+		width:200px;
+		}
+		
+		.tome img {
+			width: 200px;
+			transition: transform 0.3s ease;
+			
+		}
 
+        .tome img:hover {
+            animation: tomewiggle 1s  ease infinite;
+        }
+		
+        /* Keyframes for the wiggle animation */
+        @keyframes tomewiggle {
+            0% {
+                transform: rotate(-2deg) scale(1);
+            }
+            50% {
+                transform: rotate(2deg) scale(1.05);
+            }
+            100% {
+                transform: rotate(-2deg) scale(1);
+            }
+        }
         /* Modal Styles */
         .modal {
             display: none;
@@ -279,7 +306,6 @@
 
 <!-- HTML START -->
 <body>
-
 <!-- Main Website Container -->
 <div class="container">
     <!-- Main Content -->
@@ -302,50 +328,13 @@
             <h1>History</h1>
             <p>Founded in 2012 by then Minneapolis-based animator <a href="https://www.johnakre.com/" target="_blank">John Akre</a>, MinnAnimate has manifested primarily as a single-screening animation festival. From 2020-2021, the festival went on hiatus, returning in 2022 under the leadership of <a href="https://www.instagram.com/cstanhill/" target="_blank">CC Stanhill</a>. In 2024, the torch was passed to <a href="https://meritthursday.com/" target="_blank">Merit Thursday</a> and <a href="https://adamloomis.com/" target="_blank">Adam Loomis</a> who co-organize it today.</p>
 
-            <!-- EMAIL BUTTON -->
-            <div id="copyEmail" style="display:none;">minnanimate@gmail.com</div>
-
-            <!-- Button to trigger copy function -->
-            <button class="button" onclick="copyToClipboard('copyEmail')">EMAIL</button>
-
-            <!-- Hyperlink styled as a button -->
-            <a href="https://www.givemn.org/story/minnanimate" class="button">DONATE</a>
-
-            <script>
-                function copyToClipboard(elementId) {
-                    var emailElement = document.getElementById(elementId);
-                    var tempTextArea = document.createElement("textarea");
-                    tempTextArea.value = emailElement.textContent;
-                    document.body.appendChild(tempTextArea);
-                    tempTextArea.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(tempTextArea);
-
-                    var alertMsg = "Copied!";
-                    showAlert(alertMsg, 2000, event.target);
-                }
-
-                function showAlert(message, duration) {
-                    var button = document.querySelector("button");
-                    var alertDiv = document.createElement("div");
-                    alertDiv.textContent = message;
-                    alertDiv.classList.add("alert");
-
-                    var rect = button.getBoundingClientRect();
-                    var buttonTop = rect.top + window.pageYOffset;
-                    var buttonLeft = rect.left + window.pageXOffset;
-
-                    alertDiv.style.position = "absolute";
-                    alertDiv.style.top = buttonTop + "px";
-                    alertDiv.style.left = (buttonLeft - alertDiv.offsetWidth - 10) + "px";
-                    document.body.appendChild(alertDiv);
-
-                    setTimeout(function() {
-                        alertDiv.style.display = "none";
-                    }, duration);
-                }
-            </script>
+			<!-- TOME -->
+			<div id="tome" class="tome">
+			<a href="https://www.minnanimate.wordpress.com" target="_blank"><img  src="TomeIcon.png" alt="Tome entitled 'Ye Olde Website' published by Akre Stanhill Press"></a>
+			</div>			
+           
         </div>
+		<!-- Column 2 -->
         <div>
             <!-- Header -->
             <header class="header">
@@ -361,22 +350,70 @@
                 </script>
             </header>
             <h4>An artist-led festival celebrating animation in Minnesota.</h4>
-            <!-- Social Icons -->
-            <div class="social-icons">
-                <a href="https://filmfreeway.com/MinnAnimate" target="_blank">
-                    <img src="filmfreeway-logo-hires-black.png" alt="Film Freeway Logo" style="max-height: 75px">
+            
+		<!-- LINKED BUTTONS -->
+			
+            <div class="important-buttons">
+                
+				<!-- Social Icons -->
+				<a href="https://filmfreeway.com/MinnAnimate" target="_blank">
+                    <img src="filmfreeway-logo-hires-black.png" alt="Film Freeway Logo">
                 </a>
                 <a href="https://www.instagram.com/minnanimate/" target="_blank">
-                    <img src="Icon-Instagram-PNG.png" alt="Instagram Logo" style="max-width: 60px">
+                    <img src="Icon-Instagram-PNG.png" alt="Instagram Logo">
                 </a>
+				
+				<!-- EMAIL BUTTON -->
+            	<div id="copyEmail" style="display:none;">minnanimate@gmail.com</div>
+
+            	<!-- Button to trigger copy function -->
+           		<button class="button" onclick="copyToClipboard('copyEmail')"><b>EMAIL</b></button>
+
+            	<!-- Hyperlink styled as a button -->
+            	<a2 href="https://www.givemn.org/story/minnanimate" class="button" target="_blank"><b>DONATE</b></a2>
+
+            	<script>
+                	function copyToClipboard(elementId) {
+                    	var emailElement = document.getElementById(elementId);
+                    	var tempTextArea = document.createElement("textarea");
+                    	tempTextArea.value = emailElement.textContent;
+                    	document.body.appendChild(tempTextArea);
+                    	tempTextArea.select();
+                    	document.execCommand("copy");
+                    	document.body.removeChild(tempTextArea);
+						
+                    	var alertMsg = "Copied!";
+                    	showAlert(alertMsg, 2000, event.target);
+                	}
+
+                	function showAlert(message, duration) {
+                    	var button = document.querySelector("button");
+                    	var alertDiv = document.createElement("div");
+                    	alertDiv.textContent = message;
+                    	alertDiv.classList.add("alert");
+
+                    	var rect = button.getBoundingClientRect();
+                    	var buttonTop = rect.top + window.pageYOffset;
+                    	var buttonLeft = rect.left + window.pageXOffset;
+
+                    	alertDiv.style.position = "absolute";
+                    	alertDiv.style.top = buttonTop + "px";
+                    	alertDiv.style.left = (buttonLeft - alertDiv.offsetWidth - 10) + "px";
+                    	document.body.appendChild(alertDiv);
+
+                    	setTimeout(function() {
+                        	alertDiv.style.display = "none";
+                    	}, duration);
+                	}
+            	</script>
             </div>
-            <!-- Footer -->
+			            <!-- Footer -->
             <footer class="footer">
                 <p>&copy; 2024 MinnAnimate</p>
             </footer>
-        </div>
+		</div>
         <div>
-            <!-- Column 2 -->
+            <!-- Column 3 -->
             <h1>Festival Submission Guide</h1>
             <h2>Eligibility</h2>
             <ul>
@@ -399,7 +436,10 @@
                 <li>Upon selection, participants may be required to submit high resolution movie files.</li>
             </ul>
         </div>
+
     </div>
+		
+
     <script>
         window.onload = function() {
             // Get the modal
@@ -422,7 +462,8 @@
             }
         }
     </script>
-    <!-- The Modal -->
+	
+	<!-- The Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
 			<h1>Welcome to</h1>
@@ -432,7 +473,8 @@
 			<a href="https://www.givemn.org/story/minnanimate" class="button2" target="_blank">DONATE HERE</a>
 			<span class="close">Proceed to Website</span>
         </div>
-    </div>
+    </div> 
+	
 </div> <!-- Close .container -->
 </body>
 </html>
