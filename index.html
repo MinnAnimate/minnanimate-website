@@ -45,11 +45,21 @@
         /* Section Styles */
         .header {
             color: #ffffff;
-            display: flex;
+            display: inline;
             justify-content: center;
             align-items: center;
             margin-top: 15%;
         }
+		
+		.DonateJSON-Container {
+			margin: auto;
+			
+		}
+		
+		.fest-sub-guide {
+			margin: auto;
+			padding: 0px;
+		}
 
         /* Main Content divs */
         .main-content div {
@@ -59,8 +69,9 @@
         /* Footer */
         .footer {
             color: #FBAA9D;
-            padding: 20px;
+            padding: 10px 100px ;
             text-align: center;
+			
         }
 
         /* Hyperlinks */
@@ -369,9 +380,6 @@
             	<!-- Button to trigger copy function -->
            		<button class="button" onclick="copyToClipboard('copyEmail')"><b>EMAIL</b></button>
 
-            	<!-- Hyperlink styled as a button -->
-            	<a href="https://www.givemn.org/story/minnanimate" class="button" target="_blank"><b>DONATE</b></a>
-
             	<script>
                 	function copyToClipboard(elementId) {
                     	var emailElement = document.getElementById(elementId);
@@ -409,30 +417,68 @@
             </div>
 			            <!-- Footer -->
             <footer class="footer">
-                <p>&copy; 2024 MinnAnimate</p>
+                <a href="https://www.givemn.org/story/Minnanimate" target="_blank"><div id="DonateJSON-Container"></div></a>
+					<script>
+                    var animation = bodymovin.loadAnimation({
+                        container: document.getElementById('DonateJSON-Container'),
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: false,
+                        path: 'Donate.json'
+                    });
+					
+					var container = document.getElementById('DonateJSON-Container');
+						
+						container.addEventListener('mouseenter', function() {
+							animation.goToAndPlay(0);
+						});
+							
+						container.addEventListener('mouseleave', function() {
+							animation.stop();
+						});
+                	</script>
+				
+				<p>&copy; 2024 MinnAnimate</p>
             </footer>
 		</div>
         <div>
             <!-- Column 3 -->
-            <h1>Festival Submission Guide</h1>
+            <div class="fest-sub-guide">
+                <div id="FestSubGuide-Container"></div>
+                <script>
+                    // Load the animation
+                    var animation = bodymovin.loadAnimation({
+                        container: document.getElementById('FestSubGuide-Container'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'FestSubGuide.json'
+                    });
+                </script>
+            </div>
             <h2>Eligibility</h2>
+			<p>Eligible films <b><u>must</u></b>—</p>
             <ul>
-                <li>Only films completed after August 1st, 2023 are eligible to participate.</li>
-                <li>Only films using animation will be considered.</li>
-                <li>The festival prioritizes programming films by independent animators, students, and youth.</li>
-                <li>All genres will be considered. Music videos are eligible.</li>
-                <li>The director (or filmmaker) must own the rights to all original images, music, sound effects, and soundtracks of their festival entry.</li>
+                <li>Utilize animation</li>
+				<li>Be produced in the Midwest*</li>
+				<li>Have been completed after August 1st, 2023</li>
+      		</ul> 
+			<p>The festival prioritizes—</p>
+			<ul>
+				<li>Films produced in Minnesota</li>
+				<li>Films by independent animators, students, and youth</li>
             </ul>
-            <h2>Submitting</h2>
+			<small>*<u>States eligible to participate</u>: Minnesota, Wisconsin, Iowa, North Dakota, South Dakota, Michigan, Missouri, Ohio, Illinois, Indiana, Nebraska, and Kansas.</small>
+			<h2>Submitting</h2>
             <ul>
-                <li>Submissions open May 17th and will only be accepted via <a href="https://filmfreeway.com/MinnAnimate" target="_blank">Film Freeway</a>.</li>
-                <li>Submission deadline is July 19th.</li>
+                <li>Submissions are accepted via <b><a href="https://filmfreeway.com/MinnAnimate" target="_blank">Film Freeway</a>.</b></li>
+                <li>The submission deadline is July 19th.</li>
                 <li>There is no entry fee. Submission to the festival is free.</li>
             </ul>
             <h2>Usage</h2>
             <ul>
-                <li>Filmmakers whose work is accepted authorize the festival to use their publicity material and/or a short excerpt of the film for promotional purposes.</li>
-                <li>Film stills will be used on the festival website and in printed programs.</li>
+				<li>The filmmaker(s) must own the rights to all original images, music, sound effects, and soundtracks of their festival entry.</li>
+                <li>Participating filmmakers authorize MinnAnimate to use their publicity material and/or excerpt(s) of the film for promotional purposes.</li>
                 <li>Upon selection, participants may be required to submit high resolution movie files.</li>
             </ul>
         </div>
@@ -464,7 +510,7 @@
     </script>
 	
 	<!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="none">
         <div class="modal-content">
 			<h1>Welcome to</h1>
 			<img src="TextLogo.png" alt="MinnAnimate Logo">
