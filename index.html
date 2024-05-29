@@ -419,7 +419,7 @@
             <footer class="footer">
                 <a href="https://www.givemn.org/story/Minnanimate" target="_blank"><div id="DonateJSON-Container"></div></a>
 					<script>
-                    var animation = bodymovin.loadAnimation({
+                    var animation2 = bodymovin.loadAnimation({
                         container: document.getElementById('DonateJSON-Container'),
                         renderer: 'svg',
                         loop: false,
@@ -430,11 +430,11 @@
 					var container = document.getElementById('DonateJSON-Container');
 						
 						container.addEventListener('mouseenter', function() {
-							animation.goToAndPlay(0);
+							animation2.goToAndPlay(0);
 						});
 							
 						container.addEventListener('mouseleave', function() {
-							animation.stop();
+							animation2.stop();
 						});
                 	</script>
 				
