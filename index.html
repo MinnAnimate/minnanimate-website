@@ -8,6 +8,43 @@
 
     <!-- Linking to Lottie via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.11/lottie.min.js"></script>
+	
+	  <title>Email Collection Form</title>
+  <script>
+    function openModal() {
+      document.getElementById('email-list-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('email-list-modal').style.display = 'none';
+    }
+
+    async function submitEmail(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const response = await fetch('YOUR_WEB_APP_URL_HERE', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({ email: email })
+      });
+
+      const result = await response.text();
+      alert(result);
+      closeModal();
+    }
+
+    // Close the modal when the user clicks anywhere outside of it
+    window.onclick = function(event) {
+      const modal = document.getElementById('email-list-modal');
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+			
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/byt6bku.css">
@@ -152,7 +189,7 @@
 
         /* CSS for button text */
         .button {
-            font-family: Arpona;
+            font-family: "Arpona";
             background-color: #D9E250;
 			margin: 10px;
 			padding: 5px 10px;
@@ -169,6 +206,92 @@
             background-color: #DD8172;
         }
 		
+
+    /* The Email List Modal (background) */
+		
+	.join-button {
+		position: fixed;
+      	bottom: 0;
+      	left: 0;
+      	margin: 0px;
+		}
+    .email-list-modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      padding-top: 60px;
+    }
+
+    /* The Email List Modal Content/Box */
+    .email-modal-content {
+      background-color: #D9E250;
+      margin: 5% auto; /* 5% from the top and centered */
+      padding: 20px;
+      border: 0px solid #888;
+      width: 20%; /* Could be more or less, depending on screen size */
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+	  border-radius: 20px;
+	
+    }
+		.email-modal-content label {
+			text-align: center;
+		}
+		.email-modal-content input {
+			font-family: "Arpona";
+			background-color: #F7EDE2;
+			border: none;
+			font-size: 18px;
+			margin:
+		}
+		
+		.email-modal-content button {
+			font-family: "Arpona";
+			color: #D9E250;
+			background-color: #402D34;
+			border: none;
+			text-transform: uppercase;
+			font-weight: 700;
+			font-size: 18px;
+			width: 50%;
+			margin: auto;
+			cursor: pointer;
+			
+		}
+		
+		.email-modal-content button:hover {
+			background-color: #DD8172;
+			animation: flash 1s  ease infinite;
+		}
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label, input, button {
+      margin-bottom: 10px;
+    }
 		
         /* CSS for Modal Button text */
         .button2 {
@@ -310,6 +433,10 @@
 			.modal-content iframe {
 			display: none;
 			}
+			
+			.email-modal-content  {
+				width: 70%;
+			}
         }
     </style>
     <!-- CSS END -->
@@ -323,7 +450,28 @@
     <div class="main-content">
         <div>
             <!-- Column 1 -->
-            <div class="save-the-date">
+            	<!-- Email List Join  -->
+
+<!-- Trigger/Open The Modal -->
+<div class="join-button">
+<button class="button" onclick="openModal()">Join Our Email List!</button>
+</div>
+<!-- The Modal -->
+<div id="email-list-modal" class="email-list-modal">
+
+  <!-- Modal content -->
+  <div class="email-modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form onsubmit="submitEmail(event)">
+	  <label for="email">Join our email list and be the <br> first to know about programming!</label>
+      <input type="email" id="email" name="email" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</div>
+			
+			<div class="save-the-date">
                 <div id="SaveTheDateJSON-Container"></div>
                 <script>
                     // Load the animation
@@ -509,8 +657,8 @@
         }
     </script>
 	
-	<!-- The Modal -->
-    <div id="myModal" class="modal">
+	<!-- On-Arrival Modal -->
+    <div id="myModal" class="none">
         <div class="modal-content">
 			<h1>Welcome to</h1>
 			<img src="TextLogo.png" alt="MinnAnimate Logo">
@@ -521,7 +669,10 @@
         </div>
     </div> 
 	
+
+		
 </div> <!-- Close .container -->
+
 </body>
 </html>
 <!-- HTML END -->
